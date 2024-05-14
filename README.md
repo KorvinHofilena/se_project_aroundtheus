@@ -10,4 +10,4 @@ This project was made to partray adaptability to all screen sizes and functional
 
 **Video Link**
 
-https://drive.google.com/file/d/1kXZwSBtEOFoe6D3Yo4dHsSJX-nvo9HNI/view?usp=drive_link
+https://drive.google.com/file/d/1kXZwSBtEOFoe6D3Yo4dHsSJX-nvo9HNI/view?usp=sharing
