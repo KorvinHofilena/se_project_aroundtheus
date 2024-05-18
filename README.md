@@ -4,9 +4,20 @@
 
 This project was made to partray adaptability to all screen sizes and functionalirty within those devices used.
 
+Images of Project 3:
+https://photos.app.goo.gl/ddaibGxfurSs9oeTA
+
+Technologies used:
+-Flexbox
+-Grid
+-Meta Tags
+-CSS Media Queries
+-Logo and Avatar
+-Card Images
+
 **Link to project on Github**
 
-- [Link to the project on github](https://github.com/KorvinHofilena/se_project_aroundtheus.git)
+- [Link to the project on github](https://korvinhofilena.github.io/se_project_aroundtheus/)
 
 **Video Link**
 
