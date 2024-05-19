@@ -44,9 +44,9 @@
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
-/*When clicking the properties for the like button, the opacity on figma says whether the "like button" is active or inactive the opacity says "0". I've changed the opacity to 0.7 to have it as close as possible to the figma design.*/
+
 .card__like-button:hover {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .card__title {

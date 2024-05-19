@@ -10,7 +10,6 @@
 @media screen and (max-width: 800px) {
   .copyright {
     width: 282px;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 14px;
     line-height: 16.94px;
   }

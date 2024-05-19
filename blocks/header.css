@@ -1,5 +1,20 @@
+.header-wrapper {
+  width: 100%;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
 .header {
   margin-top: 45px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  padding: 0 0 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px) {
+  .header__image {
+    width: 126px;
+    height: 24px;
+    opacity: 0px;
+    margin-bottom: 0;
+  }
 }
