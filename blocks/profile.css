@@ -68,7 +68,7 @@
 
 .profile__add-button {
   background: transparent url("../images/added vector.svg") center no-repeat;
-  width: 282px;
+  width: 195px;
   height: 50px;
   border: 2px solid white;
   cursor: pointer;
@@ -105,6 +105,7 @@
     line-height: 26.63px;
     white-space: normal;
     text-overflow: ellipsis;
+    overflow: hidden;
     min-width: 210px;
     margin-left: 25px;
   }
@@ -126,6 +127,9 @@
     white-space: normal;
     width: 100%;
     margin-right: 25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .profile__add-button {
