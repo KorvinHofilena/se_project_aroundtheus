@@ -3,7 +3,7 @@
   padding: 0 0 30px;
   width: 100%;
   box-sizing: border-box;
-  width: 100%;
+
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
@@ -11,7 +11,7 @@
   .header__image {
     width: 126px;
     height: 24px;
-    opacity: 0px;
+
     margin-bottom: 0;
     margin-left: 30px;
   }
