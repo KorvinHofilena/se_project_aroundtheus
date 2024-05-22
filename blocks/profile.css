@@ -98,15 +98,13 @@
     flex-wrap: wrap;
     margin-top: 5px;
     margin-left: 20px;
+    max-width: 282px;
   }
 
   .profile__title {
     font-size: 22px;
     line-height: 26.63px;
-    white-space: normal;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    min-width: 210px;
+    max-width: 210px;
     margin-left: 25px;
   }
 
@@ -115,7 +113,7 @@
     height: 18px;
     margin-right: 15px;
     margin-bottom: 6px;
-    margin-left: 0;
+    margin-left: 15px;
   }
 
   .profile__description {
@@ -125,11 +123,8 @@
     line-height: 16.94px;
     text-align: center;
     white-space: normal;
-    width: 100%;
+    max-width: 282px;
     margin-right: 25px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
 
   .profile__add-button {
