@@ -14,7 +14,7 @@
   margin-top: 20px;
 }
 
-.modal__form input[type="text"] {
+.modal__input {
   width: 100%;
   padding: 10px;
   border: none;
@@ -69,10 +69,15 @@
   width: 40px;
   height: 40px;
   background-image: url(../images/Close\ Icon.svg);
-  border: none;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 800px) {
