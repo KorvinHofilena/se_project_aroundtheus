@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+.card__image {
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 800px) {
   .card {
     padding-bottom: 5px;
