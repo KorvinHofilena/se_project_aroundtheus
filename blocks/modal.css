@@ -1,0 +1,124 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__caption {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.modal__form {
+  margin-top: 20px;
+}
+
+.modal__input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.modal__button {
+  width: 100%;
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 25px 20px;
+  cursor: pointer;
+  margin-top: 45px;
+}
+
+.modal__button:hover {
+  background-color: #0056b3;
+}
+
+.modal__heading {
+  color: #000;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-align: left;
+}
+
+.modal_opened {
+  display: flex;
+}
+
+.modal__container {
+  position: relative;
+  padding: 36px;
+  background-color: white;
+  margin: auto;
+  border-radius: 10px;
+  width: 430px;
+  height: 330px;
+}
+
+.modal__image {
+  max-width: 75vw;
+  object-fit: contain;
+  max-height: 75vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.modal__image-container {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  padding: 20px;
+}
+
+.modal__close {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/Close\ Icon.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 800px) {
+  .modal__close {
+    width: 26px;
+    height: 26px;
+    margin-left: -40px;
+    margin-bottom: 15px;
+  }
+
+  .modal__container {
+    height: 322px;
+    top: 123px;
+    border-radius: 10px;
+  }
+}
