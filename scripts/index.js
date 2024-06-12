@@ -53,11 +53,46 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.content.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardLikeButton = cardElement.querySelector(".card__like-button");
+  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
+
+  cardDeleteButton.addEventListener("click", function () {
+    this.closest(".card").remove();
+  });
+
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle("card__like-button_active");
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    openImageViewModal(cardData.link, cardData.name);
+  });
+
   return cardElement;
 }
+
+function openImageViewModal(link, name) {
+  const imageViewModal = document.querySelector("#image-view-modal");
+  const modalImage = document.querySelector("#modal-image");
+  const modalCaption = document.querySelector("#modal-caption");
+  modalImage.src = link;
+  modalImage.alt = name;
+  modalCaption.textContent = name;
+  imageViewModal.classList.add("modal_opened");
+}
+
+function closeImageViewModal() {
+  const imageViewModal = document.querySelector("#image-view-modal");
+  imageViewModal.classList.remove("modal_opened");
+}
+
+document
+  .querySelector("#image-view-close-modal")
+  .addEventListener("click", closeImageViewModal);
 
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
@@ -73,3 +108,35 @@ initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardsListEl.prepend(cardElement);
 });
+
+const addPlaceButton = document.querySelector(".profile__add-button");
+const addPlaceModal = document.querySelector("#add-place-modal");
+const addPlaceCloseButton = document.querySelector("#add-place-close-modal");
+const addPlaceForm = document.querySelector("#add-place-form");
+const placeTitleInput = document.querySelector("#place-title-input");
+const placeLinkInput = document.querySelector("#place-link-input");
+
+function openAddPlaceModal() {
+  placeTitleInput.value = "";
+  placeLinkInput.value = "";
+  addPlaceModal.classList.add("modal_opened");
+}
+
+function closeAddPlaceModal() {
+  addPlaceModal.classList.remove("modal_opened");
+}
+
+function handleAddPlaceSubmit(e) {
+  e.preventDefault();
+  const newCardData = {
+    name: placeTitleInput.value,
+    link: placeLinkInput.value,
+  };
+  const newCardElement = getCardElement(newCardData);
+  cardsListEl.prepend(newCardElement);
+  closeAddPlaceModal();
+}
+
+addPlaceButton.addEventListener("click", openAddPlaceModal);
+addPlaceCloseButton.addEventListener("click", closeAddPlaceModal);
+addPlaceForm.addEventListener("submit", handleAddPlaceSubmit);
