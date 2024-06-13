@@ -42,11 +42,15 @@ function closePopup(popup) {
   popup.classList.remove("modal_opened");
 }
 
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
+}
+
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopUp();
+  closePopup(profileEditModal);
 }
 
 function getCardElement(cardData) {
@@ -61,7 +65,7 @@ function getCardElement(cardData) {
   cardImageEl.alt = cardData.name;
 
   cardDeleteButton.addEventListener("click", function () {
-    this.closest(".card").remove();
+    cardDeleteButton.closest(".card").remove();
   });
 
   cardLikeButton.addEventListener("click", () => {
@@ -82,12 +86,12 @@ function openImageViewModal(link, name) {
   modalImage.src = link;
   modalImage.alt = name;
   modalCaption.textContent = name;
-  imageViewModal.classList.add("modal_opened");
+  openPopup(imageViewModal);
 }
 
 function closeImageViewModal() {
   const imageViewModal = document.querySelector("#image-view-modal");
-  imageViewModal.classList.remove("modal_opened");
+  closePopup(imageViewModal);
 }
 
 document
@@ -97,10 +101,10 @@ document
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
+  openPopup(profileEditModal);
 });
 
-modalClose.addEventListener("click", closePopUp);
+modalClose.addEventListener("click", () => closePopup(profileEditModal));
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
@@ -117,13 +121,11 @@ const placeTitleInput = document.querySelector("#place-title-input");
 const placeLinkInput = document.querySelector("#place-link-input");
 
 function openAddPlaceModal() {
-  placeTitleInput.value = "";
-  placeLinkInput.value = "";
-  addPlaceModal.classList.add("modal_opened");
+  openPopup(addPlaceModal);
 }
 
 function closeAddPlaceModal() {
-  addPlaceModal.classList.remove("modal_opened");
+  closePopup(addPlaceModal);
 }
 
 function handleAddPlaceSubmit(e) {
@@ -135,6 +137,8 @@ function handleAddPlaceSubmit(e) {
   const newCardElement = getCardElement(newCardData);
   cardsListEl.prepend(newCardElement);
   closeAddPlaceModal();
+  placeTitleInput.value = "";
+  placeLinkInput.value = "";
 }
 
 addPlaceButton.addEventListener("click", openAddPlaceModal);
