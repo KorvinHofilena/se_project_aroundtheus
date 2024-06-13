@@ -38,8 +38,8 @@ const initialCards = [
   },
 ];
 
-function closePopUp() {
-  profileEditModal.classList.remove("modal_opened");
+function closePopup(popup) {
+  popup.classList.remove("modal_opened");
 }
 
 function handleProfileEditSubmit(e) {
