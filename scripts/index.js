@@ -40,10 +40,16 @@ const initialCards = [
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 300);
 }
 
 function openPopup(popup) {
-  popup.classList.add("modal_opened");
+  popup.style.display = "flex";
+  setTimeout(() => {
+    popup.classList.add("modal_opened");
+  }, 10);
 }
 
 function handleProfileEditSubmit(e) {

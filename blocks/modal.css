@@ -1,5 +1,7 @@
 .modal {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   position: fixed;
   top: 0;
   left: 0;
@@ -57,6 +59,8 @@
 }
 
 .modal_opened {
+  opacity: 1;
+  visibility: visible;
   display: flex;
 }
 
@@ -68,6 +72,7 @@
   border-radius: 10px;
   width: 430px;
   height: 330px;
+  transition: opacity 0.3s ease;
 }
 
 .modal__image {
