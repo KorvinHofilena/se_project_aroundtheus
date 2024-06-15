@@ -122,6 +122,8 @@
     height: 26px;
     margin-left: -40px;
     margin-bottom: 15px;
+    width: 26px;
+    height: 26px;
   }
 
   .modal__container {
@@ -130,5 +132,12 @@
     border-radius: 10px;
     margin-right: 20px;
     margin-left: 20px;
+  }
+  .modal__heading {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 21.78px;
+    text-align: left;
   }
 }
