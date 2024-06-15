@@ -30,7 +30,7 @@
   width: 100%;
   padding: 10px;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #000000;
   margin-bottom: 20px;
   box-sizing: border-box;
 }
@@ -52,10 +52,13 @@
 .modal__heading {
   color: #000;
   font-family: Inter;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 900;
   line-height: 29.05px;
   text-align: left;
+  margin-top: px;
+  margin-left: 9px;
+  margin-bottom: 50px;
 }
 
 .modal_opened {
@@ -66,7 +69,7 @@
 
 .modal__container {
   position: relative;
-  padding: 36px;
+  padding: 10px 36px 45px;
   background-color: white;
   margin: auto;
   border-radius: 10px;
@@ -125,5 +128,7 @@
     height: 322px;
     top: 123px;
     border-radius: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
   }
 }
