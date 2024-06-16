@@ -142,4 +142,7 @@
     line-height: 21.78px;
     text-align: left;
   }
+  .modal__button {
+    padding: 15px 0;
+  }
 }
