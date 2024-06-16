@@ -128,13 +128,15 @@
 
   .modal__container {
     height: 322px;
-    top: 123px;
+    width: 282px;
+    top: -135px;
     border-radius: 10px;
     margin-right: 20px;
     margin-left: 20px;
+    padding: 20px;
   }
   .modal__heading {
-    font-family: Inter;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: 900;
     line-height: 21.78px;
