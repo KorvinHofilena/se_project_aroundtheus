@@ -145,4 +145,19 @@
   .modal__button {
     padding: 15px 0;
   }
+
+  .modal__error {
+    color: red;
+    font-size: 12px;
+    display: none;
+  }
+
+  .modal__error_visible {
+    display: block;
+  }
+
+  .modal__button_disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+  }
 }
