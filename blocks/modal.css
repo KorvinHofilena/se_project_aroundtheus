@@ -1,3 +1,26 @@
+/* Error styles */
+.modal__error {
+  color: red;
+  font-size: 12px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.modal__error_visible {
+  display: block;
+}
+
+.modal__input_type_error {
+  border-bottom: 2px solid red;
+}
+
+/* Inactive button styles */
+.modal__button_disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
 .modal {
   opacity: 0;
   visibility: hidden;
@@ -144,20 +167,5 @@
   }
   .modal__button {
     padding: 15px 0;
-  }
-
-  .modal__error {
-    color: red;
-    font-size: 12px;
-    display: none;
-  }
-
-  .modal__error_visible {
-    display: block;
-  }
-
-  .modal__button_disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
   }
 }
