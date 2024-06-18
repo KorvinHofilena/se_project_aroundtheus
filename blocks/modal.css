@@ -24,6 +24,7 @@
 
 .modal__form {
   margin-top: 20px;
+  position: relative;
 }
 
 .modal__input {
@@ -33,6 +34,7 @@
   border-bottom: 1px solid #000000;
   margin-bottom: 20px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .modal__button {
@@ -119,14 +121,12 @@
 .modal__error {
   color: red;
   font-size: 12px;
+  display: none;
+  margin-top: -15px;
 }
 
 .modal__error_visible {
   display: block;
-}
-
-.modal__input_type_error {
-  border-bottom-color: red;
 }
 
 .modal__button_disabled {
@@ -162,20 +162,5 @@
   }
   .modal__button {
     padding: 15px 0;
-  }
-
-  .modal__error {
-    color: red;
-    font-size: 12px;
-    display: none;
-  }
-
-  .modal__error_visible {
-    display: block;
-  }
-
-  .modal__button_disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
   }
 }
