@@ -7,7 +7,7 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditForm = document.querySelector(".modal__form");
+const profileEditForm = document.querySelector("#profile-edit-form");
 
 const addPlaceButton = document.querySelector(".profile__add-button");
 const addPlaceModal = document.querySelector("#add-place-modal");
@@ -48,10 +48,33 @@ const initialCards = [
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscClose);
+  document.removeEventListener("mousedown", handleOutsideClickClose);
 }
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscClose);
+  document.addEventListener("mousedown", handleOutsideClickClose);
+}
+
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openPopup = document.querySelector(".modal_opened");
+    if (openPopup) {
+      closePopup(openPopup);
+    }
+  }
+}
+
+function handleOutsideClickClose(evt) {
+  const openPopup = document.querySelector(".modal_opened");
+  if (
+    openPopup &&
+    !openPopup.querySelector(".modal__container").contains(evt.target)
+  ) {
+    closePopup(openPopup);
+  }
 }
 
 function showError(input, message) {
