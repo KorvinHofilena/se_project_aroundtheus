@@ -46,6 +46,10 @@ const initialCards = [
   },
 ];
 
+const imageViewModal = document.querySelector("#image-view-modal");
+const modalImage = document.querySelector("#modal-image");
+const modalCaption = document.querySelector("#modal-caption");
+
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscClose);
@@ -132,10 +136,6 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-const imageViewModal = document.querySelector("#image-view-modal");
-const modalImage = document.querySelector("#modal-image");
-const modalCaption = document.querySelector("#modal-caption");
-
 function openImageViewModal(link, name) {
   modalImage.src = link;
   modalImage.alt = name;
@@ -166,8 +166,11 @@ initialCards.forEach((cardData) => {
   cardsListEl.prepend(cardElement);
 });
 
+l;
 addPlaceButton.addEventListener("click", openAddPlaceModal);
+
 addPlaceCloseButton.addEventListener("click", closeAddPlaceModal);
+
 addPlaceForm.addEventListener("submit", handleAddPlaceSubmit);
 
 function openAddPlaceModal() {
@@ -188,8 +191,39 @@ function handleAddPlaceSubmit(e) {
   closeAddPlaceModal();
 }
 
-document.querySelectorAll(".modal__input").forEach((input) => {
-  input.addEventListener("input", () => {
-    validateInput(input);
+function toggleButtonState(inputs, button) {
+  const hasInvalidInput = inputs.some((input) => !input.validity.valid);
+  if (hasInvalidInput) {
+    button.disabled = true;
+    button.classList.add("modal__button_disabled");
+  } else {
+    button.disabled = false;
+    button.classList.remove("modal__button_disabled");
+  }
+}
+
+function enableValidation() {
+  const forms = Array.from(document.querySelectorAll(".modal__form"));
+  forms.forEach((form) => {
+    const inputs = Array.from(form.querySelectorAll(".modal__input"));
+    const button = form.querySelector(".modal__button");
+
+    form.addEventListener("input", () => {
+      toggleButtonState(inputs, button);
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      inputs.forEach((input) => validateInput(input));
+      if (form.checkValidity()) {
+        if (form.id === "add-place-form") {
+          handleAddPlaceSubmit(e);
+        } else if (form.id === "profile-edit-form") {
+          handleProfileEditSubmit(e);
+        }
+      }
+    });
   });
-});
+}
+
+enableValidation();
