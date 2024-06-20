@@ -50,16 +50,10 @@ function closePopup(popup) {
   popup.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscClose);
   document.removeEventListener("mousedown", handleOutsideClickClose);
-  setTimeout(() => {
-    popup.style.display = "none";
-  }, 300);
 }
 
 function openPopup(popup) {
-  popup.style.display = "flex";
-  setTimeout(() => {
-    popup.classList.add("modal_opened");
-  }, 0);
+  popup.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscClose);
   document.addEventListener("mousedown", handleOutsideClickClose);
 }
@@ -103,13 +97,16 @@ function validateInput(input) {
   } else {
     hideError(input);
   }
-  toggleSubmitButtonState(input.closest("form"));
-}
 
-function toggleSubmitButtonState(form) {
-  const submitButton = form.querySelector(".modal__save-button");
-  const isFormValid = form.checkValidity();
-  submitButton.disabled = !isFormValid;
+  const isFormValid = profileEditForm.checkValidity(); // Check validity of the entire form
+
+  if (isFormValid) {
+    profileEditForm.querySelector(".modal__button").removeAttribute("disabled");
+  } else {
+    profileEditForm
+      .querySelector(".modal__button")
+      .setAttribute("disabled", true);
+  }
 }
 
 function handleProfileEditSubmit(e) {
@@ -185,13 +182,11 @@ addPlaceForm.addEventListener("submit", handleAddPlaceSubmit);
 
 function openAddPlaceModal() {
   openPopup(addPlaceModal);
-  toggleSubmitButtonState(addPlaceForm);
 }
 
 function closeAddPlaceModal() {
   closePopup(addPlaceModal);
   addPlaceForm.reset();
-  document.querySelectorAll(".modal__input").forEach(hideError);
 }
 
 function handleAddPlaceSubmit(e) {
@@ -207,8 +202,4 @@ document.querySelectorAll(".modal__input").forEach((input) => {
   input.addEventListener("input", () => {
     validateInput(input);
   });
-});
-
-document.querySelectorAll("form").forEach((form) => {
-  toggleSubmitButtonState(form);
 });
