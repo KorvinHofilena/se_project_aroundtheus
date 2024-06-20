@@ -1,4 +1,3 @@
-// Constants for modals and elements
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileCloseModal = document.querySelector("#profile-close-modal");
@@ -53,14 +52,14 @@ function closePopup(popup) {
   document.removeEventListener("mousedown", handleOutsideClickClose);
   setTimeout(() => {
     popup.style.display = "none";
-  }, 300); // Ensure this matches the CSS transition duration
+  }, 300);
 }
 
 function openPopup(popup) {
   popup.style.display = "flex";
   setTimeout(() => {
     popup.classList.add("modal_opened");
-  }, 0); // Adding the class after display is set to ensure transition
+  }, 0);
   document.addEventListener("keydown", handleEscClose);
   document.addEventListener("mousedown", handleOutsideClickClose);
 }
@@ -210,7 +209,6 @@ document.querySelectorAll(".modal__input").forEach((input) => {
   });
 });
 
-// Initial validation to disable submit buttons if forms are invalid
 document.querySelectorAll("form").forEach((form) => {
   toggleSubmitButtonState(form);
 });
