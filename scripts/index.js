@@ -82,6 +82,8 @@ function showError(input, message) {
   errorElement.textContent = message;
   errorElement.classList.add("modal__error_visible");
   input.classList.add("modal__input_invalid");
+
+  input.closest(".modal").querySelector(".modal__button").disabled = true;
 }
 
 function hideError(input) {
@@ -89,24 +91,10 @@ function hideError(input) {
   errorElement.textContent = "";
   errorElement.classList.remove("modal__error_visible");
   input.classList.remove("modal__input_invalid");
-}
 
-function validateInput(input) {
-  if (!input.validity.valid) {
-    showError(input, input.validationMessage);
-  } else {
-    hideError(input);
-  }
-
-  const isFormValid = profileEditForm.checkValidity(); // Check validity of the entire form
-
-  if (isFormValid) {
-    profileEditForm.querySelector(".modal__button").removeAttribute("disabled");
-  } else {
-    profileEditForm
-      .querySelector(".modal__button")
-      .setAttribute("disabled", true);
-  }
+  const modalForm = input.closest(".modal__form");
+  const isFormValid = modalForm.checkValidity();
+  modalForm.querySelector(".modal__button").disabled = !isFormValid;
 }
 
 function handleProfileEditSubmit(e) {
@@ -200,6 +188,10 @@ function handleAddPlaceSubmit(e) {
 
 document.querySelectorAll(".modal__input").forEach((input) => {
   input.addEventListener("input", () => {
-    validateInput(input);
+    if (!input.validity.valid) {
+      showError(input, input.validationMessage);
+    } else {
+      hideError(input);
+    }
   });
 });
