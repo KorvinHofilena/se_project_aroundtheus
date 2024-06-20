@@ -1,3 +1,4 @@
+// Constants for modals and elements
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileCloseModal = document.querySelector("#profile-close-modal");
@@ -46,18 +47,20 @@ const initialCards = [
   },
 ];
 
-const imageViewModal = document.querySelector("#image-view-modal");
-const modalImage = document.querySelector("#modal-image");
-const modalCaption = document.querySelector("#modal-caption");
-
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscClose);
   document.removeEventListener("mousedown", handleOutsideClickClose);
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 300); // Ensure this matches the CSS transition duration
 }
 
 function openPopup(popup) {
-  popup.classList.add("modal_opened");
+  popup.style.display = "flex";
+  setTimeout(() => {
+    popup.classList.add("modal_opened");
+  }, 0); // Adding the class after display is set to ensure transition
   document.addEventListener("keydown", handleEscClose);
   document.addEventListener("mousedown", handleOutsideClickClose);
 }
@@ -101,6 +104,13 @@ function validateInput(input) {
   } else {
     hideError(input);
   }
+  toggleSubmitButtonState(input.closest("form"));
+}
+
+function toggleSubmitButtonState(form) {
+  const submitButton = form.querySelector(".modal__save-button");
+  const isFormValid = form.checkValidity();
+  submitButton.disabled = !isFormValid;
 }
 
 function handleProfileEditSubmit(e) {
@@ -136,6 +146,10 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
+const imageViewModal = document.querySelector("#image-view-modal");
+const modalImage = document.querySelector("#modal-image");
+const modalCaption = document.querySelector("#modal-caption");
+
 function openImageViewModal(link, name) {
   modalImage.src = link;
   modalImage.alt = name;
@@ -166,20 +180,19 @@ initialCards.forEach((cardData) => {
   cardsListEl.prepend(cardElement);
 });
 
-l;
 addPlaceButton.addEventListener("click", openAddPlaceModal);
-
 addPlaceCloseButton.addEventListener("click", closeAddPlaceModal);
-
 addPlaceForm.addEventListener("submit", handleAddPlaceSubmit);
 
 function openAddPlaceModal() {
   openPopup(addPlaceModal);
+  toggleSubmitButtonState(addPlaceForm);
 }
 
 function closeAddPlaceModal() {
   closePopup(addPlaceModal);
   addPlaceForm.reset();
+  document.querySelectorAll(".modal__input").forEach(hideError);
 }
 
 function handleAddPlaceSubmit(e) {
@@ -191,39 +204,13 @@ function handleAddPlaceSubmit(e) {
   closeAddPlaceModal();
 }
 
-function toggleButtonState(inputs, button) {
-  const hasInvalidInput = inputs.some((input) => !input.validity.valid);
-  if (hasInvalidInput) {
-    button.disabled = true;
-    button.classList.add("modal__button_disabled");
-  } else {
-    button.disabled = false;
-    button.classList.remove("modal__button_disabled");
-  }
-}
-
-function enableValidation() {
-  const forms = Array.from(document.querySelectorAll(".modal__form"));
-  forms.forEach((form) => {
-    const inputs = Array.from(form.querySelectorAll(".modal__input"));
-    const button = form.querySelector(".modal__button");
-
-    form.addEventListener("input", () => {
-      toggleButtonState(inputs, button);
-    });
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      inputs.forEach((input) => validateInput(input));
-      if (form.checkValidity()) {
-        if (form.id === "add-place-form") {
-          handleAddPlaceSubmit(e);
-        } else if (form.id === "profile-edit-form") {
-          handleProfileEditSubmit(e);
-        }
-      }
-    });
+document.querySelectorAll(".modal__input").forEach((input) => {
+  input.addEventListener("input", () => {
+    validateInput(input);
   });
-}
+});
 
-enableValidation();
+// Initial validation to disable submit buttons if forms are invalid
+document.querySelectorAll("form").forEach((form) => {
+  toggleSubmitButtonState(form);
+});
