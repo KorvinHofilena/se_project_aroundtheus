@@ -28,7 +28,7 @@
   width: 430px;
   max-width: 90%;
   max-height: 90%;
-  overflow: auto;
+  transition: opacity 0.3s ease;
 }
 
 .modal__caption {
@@ -101,8 +101,8 @@
   cursor: pointer;
   border: none;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
   width: 40px;
   height: 40px;
   background-image: url(../images/Close\ Icon.svg);
@@ -164,5 +164,19 @@
 
   .modal__button {
     padding: 15px 0;
+  }
+
+  .modal__image-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    padding: 20px;
+  }
+
+  .modal__image {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
   }
 }
