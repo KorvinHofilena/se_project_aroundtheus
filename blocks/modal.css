@@ -137,8 +137,8 @@
 
 @media screen and (max-width: 800px) {
   .modal__close {
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     margin-left: -40px;
     margin-bottom: 15px;
   }
@@ -146,7 +146,7 @@
   .modal__container {
     height: auto;
     width: 282px;
-    top: -135px;
+    top: -165px;
     border-radius: 10px;
     margin-right: 20px;
     margin-left: 20px;
@@ -170,11 +170,11 @@
     position: relative;
     max-width: 90%;
     max-height: 90%;
-    padding: 20px;
+    padding: 0 20px;
   }
 
   .modal__image {
-    max-width: 100%;
+    max-width: 240px;
     max-height: 100%;
     display: block;
     margin: 0 auto;
