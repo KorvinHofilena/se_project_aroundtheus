@@ -125,12 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     closeModal(profileEditModal);
   });
 
-  profileEditForm.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-    profileTitle.textContent = profileTitleInput.value;
-    profileDescription.textContent = profileDescriptionInput.value;
-    closeModal(profileEditModal);
-  });
+  profileEditForm.addEventListener("submit", validateProfileForm);
 
   addPlaceButton.addEventListener("click", () => {
     openModal(addPlaceModal);
@@ -140,17 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
     closeModal(addPlaceModal);
   });
 
-  addPlaceForm.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-    const newPlaceData = {
-      name: placeTitleInput.value,
-      link: placeLinkInput.value,
-    };
-    const newCard = createCard(newPlaceData);
-    cardList.prepend(newCard);
-    addPlaceForm.reset();
-    closeModal(addPlaceModal);
-  });
+  addPlaceForm.addEventListener("submit", validateAddPlaceForm);
 
   imageViewCloseButton.addEventListener("click", () => {
     closeModal(imageViewModal);
