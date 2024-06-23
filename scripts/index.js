@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const imageViewModal = document.getElementById("image-view-modal");
   const imageViewCloseButton = document.getElementById(
-    "image-view-close-modal"
+    "image-view-close-button"
   );
   const modalImage = document.getElementById("modal-image");
   const modalCaption = document.getElementById("modal-caption");
@@ -121,9 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
     openModal(profileEditModal);
   });
 
-  profileCloseButton.addEventListener("click", () =>
-    closeModal(profileEditModal)
-  );
+  profileCloseButton.addEventListener("click", () => {
+    closeModal(profileEditModal);
+  });
 
   profileEditForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
@@ -132,24 +132,27 @@ document.addEventListener("DOMContentLoaded", function () {
     closeModal(profileEditModal);
   });
 
-  addPlaceButton.addEventListener("click", () => openModal(addPlaceModal));
-  addPlaceCloseButton.addEventListener("click", () =>
-    closeModal(addPlaceModal)
-  );
+  addPlaceButton.addEventListener("click", () => {
+    openModal(addPlaceModal);
+  });
+
+  addPlaceCloseButton.addEventListener("click", () => {
+    closeModal(addPlaceModal);
+  });
 
   addPlaceForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
-    const newCard = {
+    const newPlaceData = {
       name: placeTitleInput.value,
       link: placeLinkInput.value,
     };
-    const cardElement = createCard(newCard);
-    cardList.prepend(cardElement);
+    const newCard = createCard(newPlaceData);
+    cardList.prepend(newCard);
     addPlaceForm.reset();
     closeModal(addPlaceModal);
   });
 
-  imageViewCloseButton.addEventListener("click", () =>
-    closeModal(imageViewModal)
-  );
+  imageViewCloseButton.addEventListener("click", () => {
+    closeModal(imageViewModal);
+  });
 });

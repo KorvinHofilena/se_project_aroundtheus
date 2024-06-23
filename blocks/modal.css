@@ -135,6 +135,28 @@
   cursor: not-allowed;
 }
 
+.image-view-close-button {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/Close\ Icon.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.image-view-close-button:hover {
+  opacity: 0.6;
+}
+
 @media screen and (max-width: 800px) {
   .modal__close {
     width: 30px;
@@ -170,7 +192,7 @@
     position: relative;
     max-width: 90%;
     max-height: 90%;
-    padding: 0 20px;
+    margin-top: -265px;
   }
 
   .modal__image {
@@ -178,5 +200,12 @@
     max-height: 100%;
     display: block;
     margin: 0 auto;
+  }
+
+  .image-view-close-button {
+    margin-bottom: -20px;
+    margin-left: -20px;
+    width: 30px;
+    height: 30px;
   }
 }
