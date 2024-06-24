@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     profileForm.addEventListener("submit", function (event) {
       event.preventDefault();
       if (validateProfileForm()) {
-        // Submit form logic here
       }
     });
 
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
     addPlaceForm.addEventListener("submit", function (event) {
       event.preventDefault();
       if (validateAddPlaceForm()) {
-        // Submit form logic here
       }
     });
 

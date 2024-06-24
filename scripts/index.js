@@ -67,6 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
       validateProfileForm();
     } else if (modal === addPlaceModal) {
       addPlaceForm.reset();
+      const addButton = addPlaceModal.querySelector(".modal__button");
+      addButton.disabled = true;
+      addButton.classList.add("modal__button_disabled");
       validateAddPlaceForm();
     }
   }
@@ -180,82 +183,24 @@ document.addEventListener("DOMContentLoaded", function () {
   placeLinkInput.addEventListener("input", () => {
     toggleSaveButton(addPlaceModal);
   });
-});
 
-function validateProfileForm() {
-  const profileTitleInput = document.getElementById("profile-title-input");
-  const profileDescriptionInput = document.getElementById(
-    "profile-description-input"
-  );
-  const titleError = document.querySelector(".profile-title-input-error");
-  const descriptionError = document.querySelector(
-    ".profile-description-input-error"
-  );
+  function toggleSaveButton(modal) {
+    const saveButton = modal.querySelector(".modal__button");
+    const isProfileForm = modal === profileEditModal;
+    const isAddPlaceForm = modal === addPlaceModal;
 
-  let isValid = true;
-
-  if (!profileTitleInput.validity.valid) {
-    titleError.textContent = profileTitleInput.validationMessage;
-    isValid = false;
-  } else {
-    titleError.textContent = "";
-  }
-
-  if (!profileDescriptionInput.validity.valid) {
-    descriptionError.textContent = profileDescriptionInput.validationMessage;
-    isValid = false;
-  } else {
-    descriptionError.textContent = "";
-  }
-
-  return isValid;
-}
-
-function validateAddPlaceForm() {
-  const placeTitleInput = document.getElementById("place-title-input");
-  const placeLinkInput = document.getElementById("place-link-input");
-  const titleError = document.querySelector(".place-title-input-error");
-  const linkError = document.querySelector(".place-link-input-error");
-
-  let isValid = true;
-
-  if (!placeTitleInput.validity.valid) {
-    titleError.textContent = placeTitleInput.validationMessage;
-    isValid = false;
-  } else {
-    titleError.textContent = "";
-  }
-
-  if (!isValidUrl(placeLinkInput.value)) {
-    linkError.textContent = "Please enter a valid URL.";
-    isValid = false;
-  } else {
-    linkError.textContent = "";
-  }
-
-  return isValid;
-}
-
-function isValidUrl(url) {
-  try {
-    new URL(url);
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
-
-function toggleSaveButton(modal) {
-  const saveButton = modal.querySelector(".modal__button");
-  const errorMessages = modal.querySelectorAll(".modal__error");
-
-  let isVisibleErrorMessage = false;
-
-  errorMessages.forEach((error) => {
-    if (error.textContent.trim() !== "") {
-      isVisibleErrorMessage = true;
+    let isFormValid;
+    if (isProfileForm) {
+      isFormValid = validateProfileForm();
+    } else if (isAddPlaceForm) {
+      isFormValid = validateAddPlaceForm();
     }
-  });
 
-  saveButton.disabled = isVisibleErrorMessage;
-}
+    saveButton.disabled = !isFormValid;
+    if (isFormValid) {
+      saveButton.classList.remove("modal__button_disabled");
+    } else {
+      saveButton.classList.add("modal__button_disabled");
+    }
+  }
+});
