@@ -60,6 +60,15 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("modal_opened");
     document.addEventListener("keydown", handleEscClose);
     modal.addEventListener("click", handleClickOutsideClose);
+
+    if (modal === profileEditModal) {
+      profileTitleInput.value = profileTitle.textContent;
+      profileDescriptionInput.value = profileDescription.textContent;
+      validateProfileForm();
+    } else if (modal === addPlaceModal) {
+      addPlaceForm.reset();
+      validateAddPlaceForm();
+    }
   }
 
   function closeModal(modal) {
@@ -68,16 +77,16 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.removeEventListener("click", handleClickOutsideClose);
   }
 
-  function handleEscClose(evt) {
-    if (evt.key === "Escape") {
+  function handleEscClose(event) {
+    if (event.key === "Escape") {
       const openedModal = document.querySelector(".modal_opened");
       closeModal(openedModal);
     }
   }
 
-  function handleClickOutsideClose(evt) {
-    if (evt.target.classList.contains("modal")) {
-      closeModal(evt.target);
+  function handleClickOutsideClose(event) {
+    if (event.target.classList.contains("modal")) {
+      closeModal(event.target);
     }
   }
 
@@ -116,8 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   profileEditButton.addEventListener("click", () => {
-    profileTitleInput.value = profileTitle.textContent;
-    profileDescriptionInput.value = profileDescription.textContent;
     openModal(profileEditModal);
   });
 
@@ -125,7 +132,14 @@ document.addEventListener("DOMContentLoaded", function () {
     closeModal(profileEditModal);
   });
 
-  profileEditForm.addEventListener("submit", validateProfileForm);
+  profileEditForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (validateProfileForm()) {
+      profileTitle.textContent = profileTitleInput.value;
+      profileDescription.textContent = profileDescriptionInput.value;
+      closeModal(profileEditModal);
+    }
+  });
 
   addPlaceButton.addEventListener("click", () => {
     openModal(addPlaceModal);
@@ -135,9 +149,113 @@ document.addEventListener("DOMContentLoaded", function () {
     closeModal(addPlaceModal);
   });
 
-  addPlaceForm.addEventListener("submit", validateAddPlaceForm);
+  addPlaceForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (validateAddPlaceForm()) {
+      const newCard = createCard({
+        name: placeTitleInput.value,
+        link: placeLinkInput.value,
+      });
+      cardList.prepend(newCard);
+      closeModal(addPlaceModal);
+    }
+  });
 
   imageViewCloseButton.addEventListener("click", () => {
     closeModal(imageViewModal);
   });
+
+  profileTitleInput.addEventListener("input", () => {
+    toggleSaveButton(profileEditModal);
+  });
+
+  profileDescriptionInput.addEventListener("input", () => {
+    toggleSaveButton(profileEditModal);
+  });
+
+  placeTitleInput.addEventListener("input", () => {
+    toggleSaveButton(addPlaceModal);
+  });
+
+  placeLinkInput.addEventListener("input", () => {
+    toggleSaveButton(addPlaceModal);
+  });
 });
+
+function validateProfileForm() {
+  const profileTitleInput = document.getElementById("profile-title-input");
+  const profileDescriptionInput = document.getElementById(
+    "profile-description-input"
+  );
+  const titleError = document.querySelector(".profile-title-input-error");
+  const descriptionError = document.querySelector(
+    ".profile-description-input-error"
+  );
+
+  let isValid = true;
+
+  if (!profileTitleInput.validity.valid) {
+    titleError.textContent = profileTitleInput.validationMessage;
+    isValid = false;
+  } else {
+    titleError.textContent = "";
+  }
+
+  if (!profileDescriptionInput.validity.valid) {
+    descriptionError.textContent = profileDescriptionInput.validationMessage;
+    isValid = false;
+  } else {
+    descriptionError.textContent = "";
+  }
+
+  return isValid;
+}
+
+function validateAddPlaceForm() {
+  const placeTitleInput = document.getElementById("place-title-input");
+  const placeLinkInput = document.getElementById("place-link-input");
+  const titleError = document.querySelector(".place-title-input-error");
+  const linkError = document.querySelector(".place-link-input-error");
+
+  let isValid = true;
+
+  if (!placeTitleInput.validity.valid) {
+    titleError.textContent = placeTitleInput.validationMessage;
+    isValid = false;
+  } else {
+    titleError.textContent = "";
+  }
+
+  if (!isValidUrl(placeLinkInput.value)) {
+    linkError.textContent = "Please enter a valid URL.";
+    isValid = false;
+  } else {
+    linkError.textContent = "";
+  }
+
+  return isValid;
+}
+
+function isValidUrl(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function toggleSaveButton(modal) {
+  const saveButton = modal.querySelector(".modal__button");
+  const errorMessages = modal.querySelectorAll(".modal__error");
+
+  let isVisibleErrorMessage = false;
+
+  errorMessages.forEach((error) => {
+    if (error.textContent.trim() !== "") {
+      isVisibleErrorMessage = true;
+    }
+  });
+
+  saveButton.disabled = isVisibleErrorMessage;
+}

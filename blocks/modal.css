@@ -52,13 +52,12 @@
   border-bottom: 1px solid #000000;
   margin-bottom: 20px;
   box-sizing: border-box;
-  position: static;
 }
 
 .modal__button {
   width: 100%;
   background-color: #000;
-  color: white;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 25px 20px;
   cursor: pointer;
@@ -69,6 +68,12 @@
 
 .modal__button:hover {
   background-color: #0056b3;
+}
+
+.modal__button_disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 .modal__heading {
@@ -122,17 +127,11 @@
 .modal__error {
   color: red;
   font-size: 12px;
-  display: none;
   margin-top: -15px;
 }
 
 .modal__error_visible {
   display: block;
-}
-
-.modal__button_disabled {
-  background-color: #d3d3d3;
-  cursor: not-allowed;
 }
 
 .image-view-close-button {
@@ -151,10 +150,6 @@
   transition: opacity 0.3s ease;
   font-size: 24px;
   color: #ffffff;
-}
-
-.image-view-close-button:hover {
-  opacity: 0.6;
 }
 
 @media screen and (max-width: 800px) {
@@ -185,21 +180,15 @@
   }
 
   .modal__button {
-    padding: 15px 0;
+    padding: 15px 5px;
+    width: 80%;
+    border: none;
   }
 
-  .modal__image-container {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    margin-top: -265px;
-  }
-
-  .modal__image {
-    max-width: 240px;
-    max-height: 100%;
-    display: block;
-    margin: 0 auto;
+  .modal__button_disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
   }
 
   .image-view-close-button {
