@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (profileForm) {
     profileForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      validateProfileForm();
+      if (validateProfileForm()) {
+        // Submit form logic here
+      }
     });
 
     const profileTitleInput = document.getElementById("profile-title-input");
@@ -20,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (addPlaceForm) {
     addPlaceForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      validateAddPlaceForm();
+      if (validateAddPlaceForm()) {
+        // Submit form logic here
+      }
     });
 
     const placeTitleInput = document.getElementById("place-title-input");
@@ -62,10 +66,7 @@ function validateProfileForm() {
     descriptionError.classList.remove("modal__error_visible");
   }
 
-  const saveButton = document.querySelector(
-    "#profile-edit-modal .modal__button"
-  );
-  saveButton.disabled = !isValid;
+  toggleSaveButton(document.getElementById("profile-edit-modal"), isValid);
 
   return isValid;
 }
@@ -97,8 +98,7 @@ function validateAddPlaceForm() {
     linkError.classList.remove("modal__error_visible");
   }
 
-  const saveButton = document.querySelector("#add-place-modal .modal__button");
-  saveButton.disabled = !isValid;
+  toggleSaveButton(document.getElementById("add-place-modal"), isValid);
 
   return isValid;
 }
@@ -109,5 +109,16 @@ function isValidUrl(url) {
     return true;
   } catch (error) {
     return false;
+  }
+}
+
+function toggleSaveButton(modal, isValid) {
+  const saveButton = modal.querySelector(".modal__button");
+  if (isValid) {
+    saveButton.classList.remove("modal__button_disabled");
+    saveButton.disabled = false;
+  } else {
+    saveButton.classList.add("modal__button_disabled");
+    saveButton.disabled = true;
   }
 }
