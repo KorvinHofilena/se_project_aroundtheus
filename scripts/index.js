@@ -47,10 +47,29 @@ const initialCards = [
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscClose);
+  modal.addEventListener("mousedown", handleOutsideClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscClose);
+  modal.removeEventListener("mousedown", handleOutsideClick);
+}
+
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
+}
+
+function handleOutsideClick(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closeModal(evt.target);
+  }
 }
 
 function handleProfileEditFormSubmit(evt) {
