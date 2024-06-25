@@ -64,10 +64,12 @@
   margin-top: 20px;
   margin-bottom: 20px;
   position: relative;
+  transition: opacity 0.3s ease;
 }
 
 .modal__button:hover {
   background-color: #2e2e2e;
+  opacity: 0.6;
 }
 
 .modal__button_disabled {

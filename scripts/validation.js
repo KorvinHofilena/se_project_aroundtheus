@@ -30,6 +30,8 @@ function setEventListeners(formElement) {
       toggleButtonState(inputList, buttonElement);
     });
   });
+
+  toggleButtonState(inputList, buttonElement);
 }
 
 function enableValidation() {
@@ -58,6 +60,12 @@ function toggleButtonState(inputList, buttonElement) {
     buttonElement.classList.remove("modal__button_disabled");
     buttonElement.removeAttribute("disabled");
   }
+}
+
+function validateForm(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(".modal__input"));
+  const buttonElement = formElement.querySelector(".modal__button");
+  toggleButtonState(inputList, buttonElement);
 }
 
 enableValidation();

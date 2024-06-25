@@ -1,4 +1,3 @@
-// Constants
 const profileEditButton = document.getElementById("profile-edit-button");
 const profileEditModal = document.getElementById("profile-edit-modal");
 const profileCloseModal = document.getElementById("profile-close-modal");
@@ -50,6 +49,12 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscClose);
   modal.addEventListener("mousedown", handleOutsideClick);
+
+  if (modal === addPlaceModal) {
+    validateForm(addPlaceForm);
+  } else if (modal === profileEditModal) {
+    validateForm(profileEditForm);
+  }
 }
 
 function closeModal(modal) {
@@ -85,12 +90,13 @@ function handleAddPlaceFormSubmit(evt) {
   const newCard = { name: placeTitleInput.value, link: placeLinkInput.value };
   renderCard(newCard);
   addPlaceForm.reset();
+  validateForm(addPlaceForm);
   closeModal(addPlaceModal);
 }
 
 function createCard(card) {
   const cardTemplate = document.getElementById("card-template").content;
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
@@ -130,7 +136,6 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileCloseModal.addEventListener("click", () => closeModal(profileEditModal));
-
 addPlaceButton.addEventListener("click", () => openModal(addPlaceModal));
 addPlaceCloseModal.addEventListener("click", () => closeModal(addPlaceModal));
 imageViewCloseButton.addEventListener("click", () =>
@@ -141,3 +146,5 @@ profileEditForm.addEventListener("submit", handleProfileEditFormSubmit);
 addPlaceForm.addEventListener("submit", handleAddPlaceFormSubmit);
 
 initialCards.forEach(renderCard);
+
+enableValidation();
