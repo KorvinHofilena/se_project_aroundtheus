@@ -49,12 +49,6 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscClose);
   modal.addEventListener("mousedown", handleOutsideClick);
-
-  if (modal === addPlaceModal) {
-    validateForm(addPlaceForm);
-  } else if (modal === profileEditModal) {
-    validateForm(profileEditForm);
-  }
 }
 
 function closeModal(modal) {
@@ -133,10 +127,14 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
+  validateForm(profileEditForm);
 });
 
 profileCloseModal.addEventListener("click", () => closeModal(profileEditModal));
-addPlaceButton.addEventListener("click", () => openModal(addPlaceModal));
+addPlaceButton.addEventListener("click", () => {
+  openModal(addPlaceModal);
+  validateForm(addPlaceForm);
+});
 addPlaceCloseModal.addEventListener("click", () => closeModal(addPlaceModal));
 imageViewCloseButton.addEventListener("click", () =>
   closeModal(imageViewModal)
@@ -146,5 +144,3 @@ profileEditForm.addEventListener("submit", handleProfileEditFormSubmit);
 addPlaceForm.addEventListener("submit", handleAddPlaceFormSubmit);
 
 initialCards.forEach(renderCard);
-
-enableValidation();
