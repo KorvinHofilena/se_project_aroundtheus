@@ -84,7 +84,6 @@ function handleAddPlaceFormSubmit(evt) {
   const newCard = { name: placeTitleInput.value, link: placeLinkInput.value };
   renderCard(newCard);
   addPlaceForm.reset();
-  validateForm(addPlaceForm);
   closeModal(addPlaceModal);
 }
 
@@ -133,7 +132,6 @@ profileEditButton.addEventListener("click", () => {
 profileCloseModal.addEventListener("click", () => closeModal(profileEditModal));
 addPlaceButton.addEventListener("click", () => {
   openModal(addPlaceModal);
-  validateForm(addPlaceForm);
 });
 addPlaceCloseModal.addEventListener("click", () => closeModal(addPlaceModal));
 imageViewCloseButton.addEventListener("click", () =>
