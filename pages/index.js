@@ -151,7 +151,6 @@ initialCards.forEach(function (card) {
   renderCard(card);
 });
 
-// Initialize validation
 const profileEditFormValidator = new FormValidator({
   formSelector: "#profile-edit-form",
   inputSelector: ".modal__input",
