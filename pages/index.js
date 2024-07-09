@@ -99,15 +99,15 @@ function createCard(card) {
   cardImage.alt = card.name;
   cardTitle.textContent = card.name;
 
-  cardDeleteButton.addEventListener("click", () => {
+  cardDeleteButton.addEventListener("click", function () {
     cardElement.remove();
   });
 
-  cardLikeButton.addEventListener("click", () => {
+  cardLikeButton.addEventListener("click", function () {
     cardLikeButton.classList.toggle("card__like-button_active");
   });
 
-  cardImage.addEventListener("click", () => {
+  cardImage.addEventListener("click", function () {
     modalImage.src = card.link;
     modalImage.alt = card.name;
     modalCaption.textContent = card.name;
@@ -122,22 +122,54 @@ function renderCard(card) {
   cardsList.prepend(cardElement);
 }
 
-profileEditButton.addEventListener("click", () => {
+profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
 });
 
-profileCloseModal.addEventListener("click", () => closeModal(profileEditModal));
-addPlaceButton.addEventListener("click", () => {
+profileCloseModal.addEventListener("click", function () {
+  closeModal(profileEditModal);
+});
+
+addPlaceButton.addEventListener("click", function () {
   openModal(addPlaceModal);
 });
-addPlaceCloseModal.addEventListener("click", () => closeModal(addPlaceModal));
-imageViewCloseButton.addEventListener("click", () =>
-  closeModal(imageViewModal)
-);
+
+addPlaceCloseModal.addEventListener("click", function () {
+  closeModal(addPlaceModal);
+});
+
+imageViewCloseButton.addEventListener("click", function () {
+  closeModal(imageViewModal);
+});
 
 profileEditForm.addEventListener("submit", handleProfileEditFormSubmit);
 addPlaceForm.addEventListener("submit", handleAddPlaceFormSubmit);
 
-initialCards.forEach(renderCard);
+initialCards.forEach(function (card) {
+  renderCard(card);
+});
+
+// Initialize validation
+const profileEditFormValidator = new FormValidator({
+  formSelector: "#profile-edit-form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+});
+
+profileEditFormValidator.enableValidation();
+
+const addPlaceFormValidator = new FormValidator({
+  formSelector: "#add-place-form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+});
+
+addPlaceFormValidator.enableValidation();
