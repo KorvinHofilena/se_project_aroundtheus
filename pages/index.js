@@ -1,5 +1,5 @@
-import Card from "../components/Card";
-import FormValidator from "../components/FormValidator";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const profileEditButton = document.getElementById("profile-edit-button");
 const profileEditModal = document.getElementById("profile-edit-modal");
@@ -85,18 +85,21 @@ function handleProfileEditFormSubmit(evt) {
 function handleAddPlaceFormSubmit(evt) {
   evt.preventDefault();
   const newCard = { name: placeTitleInput.value, link: placeLinkInput.value };
+  console.log("Adding new card:", newCard); // Debug log
   renderCard(newCard);
   addPlaceForm.reset();
   closeModal(addPlaceModal);
 }
 
 function createCard(data) {
+  console.log("Creating card with data:", data); // Debug log
   const card = new Card(data, "#card-template", handleImageClick);
   return card.generateCard();
 }
 
 function renderCard(data) {
   const cardElement = createCard(data);
+  console.log("Rendering card element:", cardElement); // Debug log
   cardsList.prepend(cardElement);
 }
 

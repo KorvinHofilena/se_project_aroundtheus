@@ -54,7 +54,7 @@
             minlength="2"
             maxlength="40"
           />
-          <span class="modal__error profile-title-input-error"></span>
+          <span id="profile-title-input-error" class="modal__error"></span>
           <input
             class="modal__input"
             type="text"
@@ -65,7 +65,10 @@
             minlength="2"
             maxlength="200"
           />
-          <span class="modal__error profile-description-input-error"></span>
+          <span
+            id="profile-description-input-error"
+            class="modal__error"
+          ></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -86,7 +89,7 @@
             minlength="1"
             maxlength="30"
           />
-          <span class="modal__error place-title-input-error"></span>
+          <span id="place-title-input-error" class="modal__error"></span>
           <input
             class="modal__input"
             type="url"
@@ -95,7 +98,7 @@
             placeholder="Image Link"
             required
           />
-          <span class="modal__error place-link-input-error"></span>
+          <span id="place-link-input-error" class="modal__error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -120,8 +123,8 @@
       </li>
     </template>
 
-    <script type="module" src="./components/Card.js" defer></script>
-    <script type="module" src="./components/FormValidator.js" defer></script>
-    <script type="module" src="./pages/index.js" defer></script>
+    <script type="module" src="../components/Card.js" defer></script>
+    <script type="module" src="../components/FormValidator.js" defer></script>
+    <script type="module" src="../pages/index.js" defer></script>
   </body>
 </html>
