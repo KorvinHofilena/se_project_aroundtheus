@@ -85,21 +85,19 @@ function handleProfileEditFormSubmit(evt) {
 function handleAddPlaceFormSubmit(evt) {
   evt.preventDefault();
   const newCard = { name: placeTitleInput.value, link: placeLinkInput.value };
-  console.log("Adding new card:", newCard);
   renderCard(newCard);
   addPlaceForm.reset();
+  addPlaceFormValidator._toggleButtonState();
   closeModal(addPlaceModal);
 }
 
 function createCard(data) {
-  console.log("Creating card with data:", data);
   const card = new Card(data, "#card-template", handleImageClick);
   return card.generateCard();
 }
 
 function renderCard(data) {
   const cardElement = createCard(data);
-  console.log("Rendering card element:", cardElement);
   cardsList.prepend(cardElement);
 }
 
