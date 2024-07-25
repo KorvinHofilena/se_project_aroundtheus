@@ -87,7 +87,6 @@ function handleAddPlaceFormSubmit(evt) {
   const newCard = { name: placeTitleInput.value, link: placeLinkInput.value };
   renderCard(newCard);
   addPlaceForm.reset();
-  addPlaceFormValidator._toggleButtonState();
   closeModal(addPlaceModal);
 }
 
