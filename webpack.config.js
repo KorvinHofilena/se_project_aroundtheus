@@ -12,7 +12,9 @@ module.exports = {
   },
   mode: "development",
   devServer: {
-    static: path.resolve(__dirname, "dist"),
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
     port: 9000,
     open: true,
     hot: true,
@@ -26,13 +28,12 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env"],
-            plugins: ["@babel/plugin-transform-runtime"],
           },
         },
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
