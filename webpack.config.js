@@ -5,27 +5,27 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   entry: "./src/pages/index.js",
   output: {
-    filename: "main.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "",
+    filename: "bundle.js",
+    publicPath: "/",
   },
   mode: "development",
   devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    compress: true,
-    port: 9000,
+    static: path.resolve(__dirname, "dist"),
     open: true,
+    hot: true,
+    port: 8080,
+    historyApiFallback: true,
+    client: {
+      overlay: true,
+    },
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        use: "babel-loader",
       },
       {
         test: /\.css$/,
@@ -42,10 +42,10 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       favicon: "./src/images/favicon.ico",
     }),
-    new CleanWebpackPlugin(),
   ],
 };
