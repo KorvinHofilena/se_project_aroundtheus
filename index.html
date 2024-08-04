@@ -3,78 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project</title>
-    <link rel="stylesheet" href="index.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Around the U.S</title>
+    <link href="./pages/index.css" rel="stylesheet" />
   </head>
-  <body>
-    <!-- Profile Edit Popup -->
-    <div id="profile-edit-modal" class="popup">
-      <div class="popup__container">
-        <button type="button" class="popup__close-button"></button>
+  <body class="page">
+    <div class="page__content">
+      <header class="header">
+        <img
+          src="./images/Logo.svg"
+          alt="Around the U.S"
+          class="header__image"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img src="./images/Avatar.jpg" alt="Avatar" class="profile__image" />
+          <div class="profile__info">
+            <h1 class="profile__title">Jacques Cousteau</h1>
+            <button
+              type="button"
+              class="profile__edit-button"
+              id="profile-edit-button"
+            ></button>
+            <p class="profile__description">Explorer</p>
+          </div>
+          <button type="button" class="profile__add-button"></button>
+        </section>
+        <section class="cards page__section">
+          <ul class="cards__list"></ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="copyright">&copy;2024 Around the U.S</p>
+      </footer>
+    </div>
+
+    <div class="modal" id="profile-edit-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="profile-close-modal"></button>
+        <h2 class="modal__heading">Edit Profile</h2>
         <form class="modal__form" id="profile-edit-form">
           <input
-            type="text"
-            name="name"
             class="modal__input"
+            type="text"
             id="profile-title-input"
+            name="title"
             placeholder="Name"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span id="profile-title-input-error" class="modal__error"></span>
           <input
-            type="text"
-            name="job"
             class="modal__input"
+            type="text"
+            name="description"
             id="profile-description-input"
-            placeholder="Job"
+            placeholder="Description"
             required
+            minlength="2"
+            maxlength="200"
           />
-          <button type="submit" class="modal__submit-button">Save</button>
+          <span
+            id="profile-description-input-error"
+            class="modal__error"
+          ></span>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
 
-    <!-- Add Place Popup -->
-    <div id="add-place-modal" class="popup">
-      <div class="popup__container">
-        <button type="button" class="popup__close-button"></button>
+    <div class="modal" id="add-place-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="add-place-close-modal"></button>
+        <h2 class="modal__heading">New Place</h2>
         <form class="modal__form" id="add-place-form">
           <input
-            type="text"
-            name="name"
             class="modal__input"
+            type="text"
             id="place-title-input"
+            name="title"
             placeholder="Title"
             required
+            minlength="1"
+            maxlength="30"
           />
+          <span id="place-title-input-error" class="modal__error"></span>
           <input
-            type="url"
-            name="link"
             class="modal__input"
+            type="url"
             id="place-link-input"
-            placeholder="Image URL"
+            name="link"
+            placeholder="Image Link"
             required
           />
-          <button type="submit" class="modal__submit-button">Create</button>
+          <span id="place-link-input-error" class="modal__error"></span>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
 
-    <div id="image-view-modal" class="popup">
-      <div class="popup__container">
-        <button type="button" class="popup__close-button"></button>
-        <img class="popup__image" src="#" alt="Image" />
-        <figcaption class="popup__caption"></figcaption>
+    <div class="modal" id="image-view-modal">
+      <div class="modal__image-container">
+        <img class="modal__image" id="modal-image" src="" alt="" />
+        <div class="modal__caption" id="modal-caption"></div>
+        <button class="modal__close" id="image-view-close-button">×</button>
       </div>
     </div>
 
-    <button id="profile-edit-button" class="profile__edit-button">
-      Edit Profile
-    </button>
+    <template id="card-template">
+      <li class="card">
+        <img src="" alt="" class="card__image" />
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like-button"></button>
+          <button type="button" class="card__delete-button"></button>
+        </div>
+      </li>
+    </template>
 
-    <button class="profile__add-button">Add Place</button>
-
-    <section id="cards-container" class="cards-container"></section>
-
-    <script src="bundle.js"></script>
+    <script type="module" src="../components/Card.js" defer></script>
+    <script type="module" src="../components/FormValidator.js" defer></script>
+    <script type="module" src="../pages/index.js" defer></script>
   </body>
 </html>
