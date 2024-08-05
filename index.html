@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Around the U.S</title>
-    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header">
         <img
-          src="./images/Logo.svg"
+          src="<%=require('./images/Logo.svg')%>"
           alt="Around the U.S"
           class="header__image"
         />
       </header>
       <main class="content">
         <section class="profile">
-          <img src="./images/Avatar.jpg" alt="Avatar" class="profile__image" />
+          <img
+            src="<%=require('./images/Avatar.jpg')%>"
+            alt="Avatar"
+            class="profile__image"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -35,69 +38,15 @@
         </section>
       </main>
       <footer class="footer">
-        <p class="copyright">&copy;2024 Around the U.S</p>
+        <p class="copyright">&copy; 2024 Around the U.S</p>
       </footer>
-    </div>
-
-    <div class="modal" id="profile-edit-modal">
-      <div class="modal__container">
-        <button class="modal__close" id="profile-close-modal"></button>
-        <h2 class="modal__heading">Edit Profile</h2>
-        <form class="modal__form" id="profile-edit-form">
-          <input
-            class="modal__input"
-            type="text"
-            id="profile-title-input"
-            name="title"
-            placeholder="Name"
-            required
-            minlength="2"
-            maxlength="40"
-          />
-          <span id="profile-title-input-error" class="modal__error"></span>
-          <input
-            class="modal__input"
-            type="text"
-            name="description"
-            id="profile-description-input"
-            placeholder="Description"
-            required
-            minlength="2"
-            maxlength="200"
-          />
-          <span
-            id="profile-description-input-error"
-            class="modal__error"
-          ></span>
-          <button class="modal__button" type="submit">Save</button>
-        </form>
-      </div>
     </div>
 
     <div class="modal" id="add-place-modal">
       <div class="modal__container">
-        <button class="modal__close" id="add-place-close-modal"></button>
-        <h2 class="modal__heading">New Place</h2>
         <form class="modal__form" id="add-place-form">
-          <input
-            class="modal__input"
-            type="text"
-            id="place-title-input"
-            name="title"
-            placeholder="Title"
-            required
-            minlength="1"
-            maxlength="30"
-          />
-          <span id="place-title-input-error" class="modal__error"></span>
-          <input
-            class="modal__input"
-            type="url"
-            id="place-link-input"
-            name="link"
-            placeholder="Image Link"
-            required
-          />
+          <input type="text" placeholder="Title" required />
+          <input type="url" placeholder="Image Link" required />
           <span id="place-link-input-error" class="modal__error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
@@ -108,7 +57,7 @@
       <div class="modal__image-container">
         <img class="modal__image" id="modal-image" src="" alt="" />
         <div class="modal__caption" id="modal-caption"></div>
-        <button class="modal__close" id="image-view-close-button">×</button>
+        <button class="modal__close" id="image-view-close-button">✕</button>
       </div>
     </div>
 
@@ -122,9 +71,5 @@
         </div>
       </li>
     </template>
-
-    <script type="module" src="../components/Card.js" defer></script>
-    <script type="module" src="../components/FormValidator.js" defer></script>
-    <script type="module" src="../pages/index.js" defer></script>
   </body>
 </html>
