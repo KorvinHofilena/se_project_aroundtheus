@@ -21,21 +21,23 @@ const profileTitleInput = document.getElementById("profile-title-input");
 const profileDescriptionInput = document.getElementById(
   "profile-description-input"
 );
-const placeTitleInput = document.getElementById("place-title-input");
-const placeLinkInput = document.getElementById("place-link-input");
 
 const userInfo = new UserInfo(userProfileSelectors);
 
-const profilePopup = new PopupWithForm("#profile-edit-modal", (formData) => {
-  userInfo.setUserInfo(formData);
-  profilePopup.close();
+const profilePopup = new PopupWithForm("#profile-edit-modal", {
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
+    profilePopup.close();
+  },
 });
 profilePopup.setEventListeners();
 
-const cardPopup = new PopupWithForm("#add-place-modal", (formData) => {
-  const cardElement = createCard(formData);
-  cardSection.addItem(cardElement);
-  cardPopup.close();
+const cardPopup = new PopupWithForm("#add-place-modal", {
+  handleFormSubmit: (formData) => {
+    const cardElement = createCard(formData);
+    cardSection.addItem(cardElement);
+    cardPopup.close();
+  },
 });
 cardPopup.setEventListeners();
 
@@ -43,20 +45,16 @@ const imagePopup = new PopupWithImage("#image-view-modal");
 imagePopup.setEventListeners();
 
 function createCard(data) {
-  console.log("Creating card:", data);
   const card = new Card(data, cardTemplateSelector, () => {
     imagePopup.open(data);
   });
-  const cardElement = card.generateCard();
-  console.log("Generated card element:", cardElement);
-  return cardElement;
+  return card.generateCard();
 }
 
 const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      console.log("Rendering item:", item);
       const cardElement = createCard(item);
       cardSection.addItem(cardElement);
     },
