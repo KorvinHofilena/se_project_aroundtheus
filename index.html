@@ -42,11 +42,50 @@
       </footer>
     </div>
 
+    <div class="modal" id="profile-edit-modal">
+      <div class="modal__container">
+        <form class="modal__form" id="profile-edit-form">
+          <input
+            type="text"
+            class="modal__input"
+            id="profile-title-input"
+            name="name"
+            placeholder="Name"
+            required
+          />
+          <input
+            type="text"
+            class="modal__input"
+            id="profile-description-input"
+            name="job"
+            placeholder="Job"
+            required
+          />
+          <span id="profile-input-error" class="modal__error"></span>
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
     <div class="modal" id="add-place-modal">
       <div class="modal__container">
         <form class="modal__form" id="add-place-form">
-          <input type="text" placeholder="Title" required />
-          <input type="url" placeholder="Image Link" required />
+          <input
+            type="text"
+            class="modal__input"
+            id="place-title-input"
+            name="title"
+            placeholder="Title"
+            required
+          />
+          <input
+            type="url"
+            class="modal__input"
+            id="place-link-input"
+            name="link"
+            placeholder="Image Link"
+            required
+          />
           <span id="place-link-input-error" class="modal__error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
