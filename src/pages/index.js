@@ -17,8 +17,10 @@ const profileEditButton = document.getElementById("profile-edit-button");
 const addPlaceButton = document.querySelector(".profile__add-button");
 const profileEditForm = document.getElementById("profile-edit-form");
 const addPlaceForm = document.getElementById("add-place-form");
-const profileTitleInput = document.querySelector("[name='name']");
-const profileDescriptionInput = document.querySelector("[name='job']");
+const profileTitleInput = document.getElementById("profile-title-input");
+const profileDescriptionInput = document.getElementById(
+  "profile-description-input"
+);
 
 const userInfo = new UserInfo(userProfileSelectors);
 

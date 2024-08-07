@@ -31,8 +31,8 @@ export const validationConfig = {
 };
 
 export const userProfileSelectors = {
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
+  name: ".profile__title",
+  about: ".profile__description",
 };
 
 export const cardTemplateSelector = "#card-template";
