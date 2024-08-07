@@ -11,12 +11,10 @@ module.exports = {
   },
   mode: "development",
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, "dist"),
-    },
+    static: path.resolve(__dirname, "dist"),
     open: true,
     hot: true,
-    port: 8081,
+    port: 8082,
     historyApiFallback: true,
     client: {
       overlay: true,
