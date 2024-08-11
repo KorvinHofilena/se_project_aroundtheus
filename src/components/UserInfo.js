@@ -6,14 +6,14 @@ class UserInfo {
 
   getUserInfo() {
     return {
-      name: this._nameElement.textContent,
-      job: this._jobElement.textContent,
+      name: this._nameElement?.textContent || "",
+      job: this._jobElement?.textContent || "",
     };
   }
 
   setUserInfo({ name, job }) {
-    this._nameElement.textContent = name;
-    this._jobElement.textContent = job;
+    if (this._nameElement) this._nameElement.textContent = name;
+    if (this._jobElement) this._jobElement.textContent = job;
   }
 }
 

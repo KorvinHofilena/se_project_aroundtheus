@@ -1,3 +1,10 @@
+.cards__list {
+  display: flex;
+  flex-wrap: wrap; /* Ensure cards wrap to the next line if there's no space */
+  gap: 20px; /* Add some space between each card */
+  justify-content: center; /* Center the cards in the container */
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -5,33 +12,22 @@
   border-radius: 10px;
   margin: 0;
   position: relative;
+  width: 282px; /* Define a fixed width for each card */
 }
 
 .card__image {
+  width: 100%; /* Ensure the image takes up the full width of the card */
+  height: 282px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   cursor: pointer;
-}
-
-@media screen and (max-width: 800px) {
-  .card {
-    padding-bottom: 5px;
-  }
-}
-
-.card__image {
-  width: 282px;
-  height: 282px;
 }
 
 .card__description {
   display: flex;
   background: white;
   color: black;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 25px 20px;
   align-items: center;
   justify-content: space-between;
   font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -57,7 +53,6 @@
 
 .card__like-button_active {
   background-image: url("../images/Union.svg");
-  border: none;
 }
 
 .card__like-button:hover {
@@ -91,4 +86,10 @@
 
 .card__delete-button:hover {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    padding-bottom: 5px;
+  }
 }
