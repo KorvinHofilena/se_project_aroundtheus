@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/main.js",
+  entry: "./src/pages/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -11,32 +11,34 @@ module.exports = {
   },
   mode: "development",
   devServer: {
-    static: path.resolve(__dirname, "dist"),
-    open: true,
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
+    port: 8090,
     hot: true,
-    port: 8082,
     historyApiFallback: true,
     client: {
       overlay: true,
     },
+    open: true,
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: "babel-loader",
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
         type: "asset/resource",
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: "asset/resource",
       },
     ],
