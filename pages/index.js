@@ -8,10 +8,15 @@ import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
   validationConfig,
-  userProfileSelectors,
   cardTemplateSelector,
   containerSelector,
 } from "../utils/constants.js";
+
+// Profile selectors, updated to match the HTML structure
+const userProfileSelectors = {
+  userNameSelector: ".profile__title",
+  userJobSelector: ".profile__description",
+};
 
 const profileEditButton = document.getElementById("profile-edit-button");
 const addPlaceButton = document.querySelector(".profile__add-button");
@@ -26,6 +31,7 @@ const userInfo = new UserInfo(userProfileSelectors);
 
 const profilePopup = new PopupWithForm("#profile-edit-modal", {
   handleFormSubmit: (formData) => {
+    console.log("Profile form submitted:", formData); // Debugging
     userInfo.setUserInfo(formData);
     profilePopup.close();
   },
@@ -34,9 +40,11 @@ profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm("#add-place-modal", {
   handleFormSubmit: (formData) => {
-    console.log("Form data on submit:", formData);
-    const cardElement = createCard(formData);
-    console.log("Creating a new card...");
+    const cardElement = createCard({
+      name: formData.title,
+      link: formData.link,
+    });
+
     cardSection.addItem(cardElement);
     cardPopup.close();
   },
@@ -47,7 +55,6 @@ const imagePopup = new PopupWithImage("#image-view-modal");
 imagePopup.setEventListeners();
 
 function createCard(data) {
-  console.log("Card data:", data);
   const card = new Card(data, cardTemplateSelector, () => {
     imagePopup.open(data);
   });

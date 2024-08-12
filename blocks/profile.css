@@ -10,8 +10,6 @@
   object-fit: cover;
   background-position: center;
   margin-right: 24px;
-  border: none;
-  box-shadow: none;
 }
 
 .profile__info {

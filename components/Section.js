@@ -6,6 +6,7 @@ class Section {
   }
 
   addItem(element) {
+    console.log("Adding item:", element); // Debugging line
     this._container.prepend(element);
   }
 
@@ -15,7 +16,9 @@ class Section {
 
   renderItems() {
     this.clear();
-    this._renderedItems.forEach((item) => this._renderer(item));
+    this._renderedItems.forEach((item) => {
+      this._renderer(item);
+    });
   }
 }
 

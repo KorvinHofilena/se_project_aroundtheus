@@ -5,7 +5,8 @@ class PopupWithForm extends Popup {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popupElement.querySelector(".modal__form");
-    this._inputList = Array.from(this._form.querySelectorAll(".modal__input"));
+    this._inputList = this._form.querySelectorAll(".modal__input");
+    this._isEventListenerAdded = false; // Ensure event listener is added once
   }
 
   _getInputValues() {
@@ -17,17 +18,19 @@ class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
-    this._form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
-    });
+    if (!this._isEventListenerAdded) {
+      super.setEventListeners();
+      this._form.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        this._handleFormSubmit(this._getInputValues());
+      });
+      this._isEventListenerAdded = true; // Prevent multiple event listeners
+    }
   }
 
   open() {
-    this._form.reset();
     super.open();
+    this._form.reset();
   }
 }
 
