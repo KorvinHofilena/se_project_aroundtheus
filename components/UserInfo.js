@@ -18,7 +18,7 @@ class UserInfo {
     if (job) {
       this._userJobElement.textContent = job;
     }
-    console.log("Updated User Info:", { name, job }); // For debugging
+    console.log("Updated User Info:", { name, job });
   }
 }
 

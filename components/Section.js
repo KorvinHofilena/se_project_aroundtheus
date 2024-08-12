@@ -6,7 +6,7 @@ class Section {
   }
 
   addItem(element) {
-    console.log("Adding item:", element); // Debugging line
+    console.log("Adding item:", element);
     this._container.prepend(element);
   }
 
