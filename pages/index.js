@@ -13,7 +13,6 @@ import {
   containerSelector,
 } from "../utils/constants.js";
 
-// Elements
 const profileEditButton = document.getElementById("profile-edit-button");
 const addPlaceButton = document.querySelector(".profile__add-button");
 const profileEditForm = document.getElementById("profile-edit-form");
@@ -23,7 +22,6 @@ const profileDescriptionInput = document.getElementById(
   "profile-description-input"
 );
 
-// Classes Instances
 const userInfo = new UserInfo(userProfileSelectors);
 
 const profilePopup = new PopupWithForm("#profile-edit-modal", {

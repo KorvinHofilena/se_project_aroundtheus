@@ -10,12 +10,11 @@ class Section {
   }
 
   clear() {
-    // Clears the container before re-rendering to avoid duplicates
     this._container.innerHTML = "";
   }
 
   renderItems() {
-    this.clear(); // Clear existing items before rendering new ones
+    this.clear();
     this._renderedItems.forEach((item) => {
       this._renderer(item);
     });
