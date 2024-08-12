@@ -14,7 +14,7 @@ module.exports = {
     static: {
       directory: path.resolve(__dirname, "dist"),
     },
-    port: 8090,
+    port: 8094,
     hot: true,
     historyApiFallback: true,
     client: {

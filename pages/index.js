@@ -34,7 +34,9 @@ profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm("#add-place-modal", {
   handleFormSubmit: (formData) => {
+    console.log("Form data on submit:", formData);
     const cardElement = createCard(formData);
+    console.log("Creating a new card...");
     cardSection.addItem(cardElement);
     cardPopup.close();
   },
@@ -45,6 +47,7 @@ const imagePopup = new PopupWithImage("#image-view-modal");
 imagePopup.setEventListeners();
 
 function createCard(data) {
+  console.log("Card data:", data);
   const card = new Card(data, cardTemplateSelector, () => {
     imagePopup.open(data);
   });

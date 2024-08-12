@@ -105,6 +105,24 @@
   padding: 20px;
 }
 
+.modal__close-button {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/Close\ Icon.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  font-size: 24px;
+  color: #ffffff;
+}
+
 .modal__close {
   cursor: pointer;
   border: none;

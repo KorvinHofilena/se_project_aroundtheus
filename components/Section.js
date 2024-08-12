@@ -6,7 +6,7 @@ class Section {
   }
 
   addItem(element) {
-    this._container.append(element);
+    this._container.prepend(element);
   }
 
   clear() {
@@ -15,9 +15,7 @@ class Section {
 
   renderItems() {
     this.clear();
-    this._renderedItems.forEach((item) => {
-      this._renderer(item);
-    });
+    this._renderedItems.forEach((item) => this._renderer(item));
   }
 }
 
