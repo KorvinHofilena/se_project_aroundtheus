@@ -1,3 +1,5 @@
+// src/utils/constants.js
+
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -31,8 +33,8 @@ export const validationConfig = {
 };
 
 export const userProfileSelectors = {
-  name: ".profile__title",
-  about: ".profile__description",
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
 };
 
 export const cardTemplateSelector = "#card-template";
