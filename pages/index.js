@@ -12,7 +12,6 @@ import {
   containerSelector,
 } from "../utils/constants.js";
 
-// Profile selectors, updated to match the HTML structure
 const userProfileSelectors = {
   userNameSelector: ".profile__title",
   userJobSelector: ".profile__description",
@@ -31,7 +30,7 @@ const userInfo = new UserInfo(userProfileSelectors);
 
 const profilePopup = new PopupWithForm("#profile-edit-modal", {
   handleFormSubmit: (formData) => {
-    console.log("Profile form submitted:", formData); // Debugging
+    console.log("Profile form submitted:", formData);
     userInfo.setUserInfo(formData);
     profilePopup.close();
   },
