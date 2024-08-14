@@ -12,7 +12,6 @@ import {
   containerSelector,
 } from "../utils/constants.js";
 
-// Profile selectors, updated to match the HTML structure
 const userProfileSelectors = {
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
